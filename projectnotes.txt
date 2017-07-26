@@ -1,0 +1,74 @@
+2462.329317269076 y. This is 2.5108780005364775 of the image. How muchLinks need to be in the same place relative to the image, not the canvas.
+Link text and clickable area(triangles), will also need to shrink with proportionally with the image.
+
+
+Measure the smallest possible window(a certain mobile device):
+
+320 by 568 = 4:7
+
+compared to a larger-size window:
+
+1600 by 800 = 2:1
+
+1600 / 320 = 5
+Meaning smaller window is a 5th of the width of the larger
+
+Determine image properties:
+
+Image width = window width
+Image height = window width * 1.538
+
+the x coordinate of the items can remain the same, directly linked to the width of the canvas
+
+The values you have set are for an 1600 width canvas
+
+the y values are based on the height of the canvas, but they should match the image
+
+
+261.46
+
+800 / 170 = 4.70588
+2460 / 170 = 14.47059
+2460 / 261.46 = 9.4087
+170 * 1.538 = 261.46
+
+
+With your current setup, the x positions of your text are generally consistent across different resolutions, with all text elements drifting slightly to the right when viewed on smaller devices.
+You need to re-think your y positions as these are generally out of whack
+
+I've defined a y coordinate on the canvas, What is that equivalent to on the image itself? How much of the image is being scrolled down to get to that point? From the top of the image, it's 1000 px
+
+Canvas = 170 from top > sh / 170 = 4.7117
+Image = 1000 from top > imgh / 1000 = 2.4623
+
+it's got the initial coordinate, now it just needs to move not at the rate of compression of the canvas but at the rate of compression of the image as the screen smallens
+
+You need to track a single vertical position as your document smallens.This position could be the top left corner of the image. Which is    
+
+0,2462
+
+At any point, the position of your dots must go down - this rate of change will be generally constant. 
+
+Canvas points are drawn going from 0
+image points will be from top of canvas plus the height of the image
+
+First point is 155 from the top of the page
+first point is 980 from the top of the image
+
+the first point is drawn at 980.664658634538 y on the image when it's 2462.329317269076 y. This is 2.5108780005364775 of the image. How much is it of the canvas?
+
+Balls need to be drawn at 2.510 of the image height minus the pixel value of the height of the image
+
+imgh/(-drawheight + number) 
+
+imgh/number2 + drawheight
+
+
+
+You'll use settimeout. Within that function, you'll declare a new Date and then watch how many seconds have passed since then.  After 2.55 seconds, you'll stop the function and your text should be completely filled in. The second value (0 to 2.55 seconds) should go into the opacity value for the text, which ranges from 0 (invisible) to 255(completely filled in). 
+
+First, create a function that defines a new date element upon page load
+
+Then, have a timer countdown the seconds with two decimal places. Feed this timer value into the draw function and have that update the opacity dynamically.
+
+
